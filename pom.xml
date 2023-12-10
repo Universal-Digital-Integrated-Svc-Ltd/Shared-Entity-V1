@@ -11,8 +11,10 @@
 	<groupId>com.ms</groupId>
 	<artifactId>shared-entity-v1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>Shared-Entity-V1</name>
 	<description>Shared entity project for Spring Boot</description>
+	<url>http://maven.apache.org</url>
 	<properties>
 		<java.version>21</java.version>
 		<!-- Define other properties if needed -->
@@ -90,6 +92,8 @@
 		</repository>
 	</distributionManagement>
 
+
+
 	<build>
 		<plugins>
 			<plugin>
@@ -104,45 +108,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<!-- Maven Publishing Plugin -->
-<!--			<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-publish-plugin</artifactId>-->
-<!--				<version>${maven-publish.version}</version>-->
-<!--				<configuration>-->
-<!--					<repositories>-->
-<!--						<repository>-->
-<!--							<id>GitHubPackages</id>-->
-<!--							<url>https://maven.pkg.github.com/Universal-Digital-Integrated-Svc-Ltd/Shared-Entity-V1</url>-->
-<!--							<snapshots>-->
-<!--								<enabled>true</enabled>-->
-<!--							</snapshots>-->
-<!--						</repository>-->
-<!--					</repositories>-->
-<!--				</configuration>-->
-<!--			</plugin>-->
 		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.1.0</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-site-plugin</artifactId>
-					<version>3.7.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.2.0</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>3.0.0-M1</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 
 </project>
