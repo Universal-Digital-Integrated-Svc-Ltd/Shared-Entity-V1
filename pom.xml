@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ms</groupId>
 	<artifactId>shared-entity-v1</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<packaging>jar</packaging>
 	<name>Shared-Entity-V1</name>
 	<description>Shared entity project for Spring Boot</description>
@@ -99,6 +99,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>repackage</id>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</execution>
+				</executions>
 				<configuration>
 					<excludes>
 						<exclude>
