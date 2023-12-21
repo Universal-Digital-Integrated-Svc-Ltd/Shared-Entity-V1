@@ -89,8 +89,8 @@ public class Category extends BaseEntity {
 	private String templateFileUrl;
 
 //	@Type(type = "json")
-	@Column(name = "draft", columnDefinition = "jsonb")
-	private String draft;
+//	@Column(name = "draft", columnDefinition = "jsonb")
+//	private String draft;
 
 	@Override
 	protected void onCreate() {

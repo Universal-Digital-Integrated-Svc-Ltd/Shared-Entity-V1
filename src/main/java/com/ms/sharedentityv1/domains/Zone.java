@@ -14,7 +14,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "zone")
+@Table(name = "`zone`")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -32,7 +32,7 @@ public class Zone {
 	@Column(name = "status")
 	private Boolean status;
 
-	@Column(name = "default")
+	@Column(name = "`default`")
 	private Boolean isDefault;
 
 	@Column(name = "default_city")

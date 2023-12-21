@@ -13,7 +13,7 @@ import org.springframework.data.annotation.CreatedDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 @NoArgsConstructor
 @Getter
 @Setter

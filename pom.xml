@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ms</groupId>
 	<artifactId>shared-entity-v1</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.7</version>
 	<packaging>jar</packaging>
 	<name>Shared-Entity-V1</name>
 	<description>Shared entity project for Spring Boot</description>
@@ -91,8 +91,6 @@
 			<url>https://maven.pkg.github.com/Universal-Digital-Integrated-Svc-Ltd/Shared-Entity-V1</url>
 		</repository>
 	</distributionManagement>
-
-
 
 	<build>
 		<plugins>
