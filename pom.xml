@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ms</groupId>
 	<artifactId>shared-entity-v1</artifactId>
-	<version>0.0.7</version>
+	<version>0.0.9</version>
 	<packaging>jar</packaging>
 	<name>Shared-Entity-V1</name>
 	<description>Shared entity project for Spring Boot</description>
