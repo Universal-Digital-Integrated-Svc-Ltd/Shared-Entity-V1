@@ -2,7 +2,6 @@ package com.ms.sharedentityv1.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.MDC;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,41 +9,44 @@ import java.util.List;
 @Getter
 @Setter
 public class ErrorResponseDto<T> implements ResponseDto<T> {
+
 	private String code = "";
 	private T data;
 	private List<String> message;
-	private long timestamp;
-	protected String requestId;
+	private Long timestamp;
+	private String requestId;
 
 	public ErrorResponseDto() {
+		super();
 	}
 
 	public ErrorResponseDto(String errorMessage) {
 		this.message = Collections.singletonList(errorMessage);
 		this.timestamp = System.currentTimeMillis();
-		this.requestId = MDC.get("requestId");
 	}
 
 	public ErrorResponseDto(String errorCode, String errorMessage) {
 		this.code = errorCode;
 		this.message = Collections.singletonList(errorMessage);
 		this.timestamp = System.currentTimeMillis();
-		this.requestId = MDC.get("requestId");
 	}
 
-	public ErrorResponseDto(String errorCode, String errorMessage, T data) {
+	public ErrorResponseDto(String code, T data, String errorMessage) {
+		this.timestamp = System.currentTimeMillis();
+		this.code = code;
 		this.data = data;
-		this.code = errorCode;
 		this.message = Collections.singletonList(errorMessage);
-		this.requestId = MDC.get("requestId");
-		this.timestamp = System.currentTimeMillis();
 	}
 
-	public ErrorResponseDto(String errorCode, List<String> errorMessage) {
-		this.code = errorCode;
-		this.message = errorMessage;
+	public ErrorResponseDto(String code, List<String> message) {
 		this.timestamp = System.currentTimeMillis();
-		this.requestId = MDC.get("requestId");
+		this.code = code;
+		this.message = message;
+	}
+
+	public ErrorResponseDto(List<String> message) {
+		this.timestamp = System.currentTimeMillis();
+		this.code = "400";
+		this.message = message;
 	}
 }
-

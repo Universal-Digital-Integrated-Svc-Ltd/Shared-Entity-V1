@@ -2,40 +2,88 @@ package com.ms.sharedentityv1.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 public class SuccessResponseDto<T> implements ResponseDto<T> {
-	protected Integer code = HttpStatus.OK.value();
-	protected T data;
-	protected String message = null;
-	protected long timestamp;
-	protected String requestId;
-	protected Long numItems;
+    private int status;
+    private String message = null;
+    private T data;
+    private LocalDateTime timestamp;
+    private String requestId;
+    private Long numItems;
 
-	public SuccessResponseDto() {
-		this(null, "Success");
-	}
+    public SuccessResponseDto() {
+        super();
+    }
 
-	public SuccessResponseDto(T data) {
-		this(data, "Success");
-	}
+    public SuccessResponseDto(String message) {
+        this.message = message;
+        this.timestamp = LocalDateTime.now();
+    }
 
-	public SuccessResponseDto(String message) {
-		this.message = message;
-	}
+    public SuccessResponseDto(T data) {
+        this.data = data;
+        this.message = "Success";
+        this.timestamp = LocalDateTime.now();
+    }
 
-	public SuccessResponseDto(T data2, String successMessage) {
-		this.data = data2;
-		this.message = successMessage;
-		this.requestId = MDC.get("requestId");
-		this.timestamp = System.currentTimeMillis();
-	}
+    public SuccessResponseDto(String message, String requestId) {
+        this.message = message;
+        this.status = HttpStatus.OK.value();
+        this.requestId = requestId;
+        this.timestamp = LocalDateTime.now();
 
-	public SuccessResponseDto(T data2, String successMessage, Long numItems) {
-		this(data2, successMessage);
-		this.numItems = numItems;
-	}
+    }
+
+    public SuccessResponseDto(T data, Long requestId) {
+        this.data = data;
+        this.requestId = String.valueOf(requestId);
+        this.message = "Success";
+        this.timestamp = LocalDateTime.now();
+        this.status = HttpStatus.OK.value();
+    }
+
+    public SuccessResponseDto(T data, String message, HttpStatus status) {
+        this.message = message;
+        this.data = data;
+        this.timestamp = LocalDateTime.now();
+        this.status = status.value();
+    }
+
+    public SuccessResponseDto(T data, String message, Long numItems) {
+        this.data = data;
+        this.message = message;
+        this.numItems = numItems;
+        this.timestamp = LocalDateTime.now();
+        this.status = HttpStatus.OK.value();
+    }
+
+    public SuccessResponseDto(T data, String message, String requestId) {
+        this.data = data;
+        this.message = message;
+        this.requestId = requestId;
+        this.timestamp = LocalDateTime.now();
+        this.status = HttpStatus.OK.value();
+    }
+
+    public SuccessResponseDto(T data, String message, Long numItems, String requestId) {
+        this.data = data;
+        this.message = message;
+        this.numItems = numItems;
+        this.requestId = requestId;
+        this.timestamp = LocalDateTime.now();
+    }
+
+    public SuccessResponseDto(T data, String message, HttpStatus status, Long numItems, String requestId) {
+        this.data = data;
+        this.message = message;
+        this.numItems = numItems;
+        this.status = status.value();
+        this.requestId = requestId;
+        this.timestamp = LocalDateTime.now();
+    }
 }

@@ -1,41 +1,32 @@
 package com.ms.sharedentityv1.domains;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
-@MappedSuperclass
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public abstract class BaseEntity {
 
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private Long createdAt;
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
-	@Column(name = "updated_at")
-	private Long updatedAt;
+    @Column(name = "created_by")
+    @CreatedBy
+    private String createdBy;
 
-	@Version
-	@Column(name = "version")
-	private Long version;
+    @LastModifiedDate
+    @Column(name = "updated_at", nullable = false, updatable = false)
+    private LocalDateTime updatedAt;
 
-	@PrePersist
-	private void prePersist() {
-		this.updatedAt = System.currentTimeMillis();
-		this.createdAt = System.currentTimeMillis();
-		this.onCreate();
-	}
-
-	@PreUpdate
-	private void preUpdate() {
-		this.updatedAt = System.currentTimeMillis();
-		this.onUpdate();
-	}
-
-	protected abstract void onCreate();
-	protected abstract void onUpdate();
+    @Column(name = "updated_by")
+    @LastModifiedBy
+    private String updatedBy;
 }
