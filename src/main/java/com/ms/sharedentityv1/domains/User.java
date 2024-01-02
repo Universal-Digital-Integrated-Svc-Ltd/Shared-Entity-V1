@@ -7,6 +7,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
@@ -16,13 +17,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = {
+        @Index(name = "by_username", columnList = "username"),
+        @Index(name = "by_username_enabled", columnList = "username, enabled"),
+        @Index(name = "by_userId_enabled", columnList = "id, enabled")})
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = -2378033850673491228L;
 
     @Id
@@ -48,8 +57,8 @@ public class User extends BaseEntity {
     private Boolean forceValidation = false;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "M_USER_ROLE", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {
-            @JoinColumn(name = "ROLE_ID")})
+    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {
+            @JoinColumn(name = "role_id")})
     private Role role;
 
 //	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

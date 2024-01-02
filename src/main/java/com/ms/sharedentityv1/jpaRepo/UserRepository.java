@@ -11,8 +11,6 @@ import java.util.Set;
 public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByUsername(String email);
 
-//	void deleteByEmail(String email);
-
 	Optional<User> findByUsernameAndEnabledTrue(String username);
 
 	boolean existsByUsernameAndEnabledTrue(String username);
